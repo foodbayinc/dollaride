@@ -1,8 +1,13 @@
+---
+marp: true
+---
+
 # Dollaride IT Integrations – Executive Summary
 
 **Objective:**  
 Transform Dollaride's operations and project delivery by integrating AI and modern IT solutions across key business areas, ensuring faster execution, better decision-making, and a strong competitive edge.
-
+Internal data insights generation and management to aid decision making and strenghten execution within the team. 
+Improvement of business muscle memory by decentralizing information and creating visibility across teams
 ---
 
 ## Key Initiatives
