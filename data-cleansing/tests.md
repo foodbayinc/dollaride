@@ -1,109 +1,113 @@
-# Data Cleansing Project - Testing Documentation
+# Data Cleansing Project - n8n Workflow Testing Documentation
 
 ## Testing Overview
 
-This document defines the comprehensive testing strategy for the Data Cleansing and Structuring project, covering all aspects from unit testing to user acceptance testing.
+This document defines the comprehensive testing strategy for the n8n workflow-based Data Cleansing and Structuring project.
 
-**Testing Scope**: Complete application testing including data processing, validation, integration, and user interfaces  
-**Testing Duration**: Integrated throughout development with dedicated testing phases  
-**Testing Team**: Development team with business stakeholder participation  
+**Testing Scope**: n8n workflow testing including node functionality, integrations, data processing, and end-to-end automation  
+**Testing Duration**: Continuous testing during workflow development with final validation phase  
+**Testing Team**: n8n developer with business stakeholder participation for validation  
 
 ## Testing Strategy
 
 ### Testing Objectives
-- Ensure 100% data accuracy and validation compliance
-- Validate performance requirements (< 2 minutes per 1,000 records)
-- Verify integration functionality with CRM and email marketing systems
-- Confirm user interface usability and functionality
-- Validate security and compliance requirements
+- Ensure 100% workflow execution reliability
+- Validate performance requirements (< 1 minute per 1,000 records)
+- Verify all API integrations (Google Drive, Sheets, HubSpot)
+- Confirm data processing accuracy and filtering logic
+- Validate error handling and recovery mechanisms
 
 ### Testing Principles
-- Test-driven development approach
-- Continuous integration testing
-- Automated testing where possible
-- Business stakeholder validation
-- Performance and scalability focus
+- Workflow-based testing approach
+- Node-by-node validation
+- End-to-end workflow testing
+- Real data validation with business stakeholders
+- API integration and error scenario focus
 
 ## Test Categories
 
-### 1. Unit Testing
+### 1. Node-Level Testing
 
-#### Data Processing Unit Tests
-**Scope**: Individual data processing functions and algorithms
+#### Individual Node Tests
+**Scope**: Testing each n8n node in isolation
 
-##### Email Validation Tests
+##### Google Drive Trigger Node Tests
 ```
-Test ID: UT-001
-Description: Validate email format compliance
+Test ID: NT-001
+Description: Validate Google Drive file monitoring
 Test Cases:
-- Valid email formats (user@domain.com)
-- Invalid formats (missing @, invalid domains)
-- Edge cases (special characters, long domains)
-- Null and empty values
-Expected Results: 100% accurate email validation
+- New CSV file detection in monitored folder
+- File modification trigger activation
+- Multiple file formats (.csv, .xlsx, .xls)
+- Large file handling (up to 50MB)
+- Polling interval accuracy
+Expected Results: Reliable file detection and trigger activation
 ```
 
-##### Phone Number Validation Tests
+##### Google Sheets Node Tests
 ```
-Test ID: UT-002
-Description: Validate phone number formatting and validation
+Test ID: NT-002
+Description: Validate Google Sheets data upload and conversion
 Test Cases:
-- Valid US phone formats ((XXX) XXX-XXXX, XXX-XXX-XXXX)
-- Invalid formats (incomplete numbers, invalid characters)
-- International numbers (edge case handling)
-- Null and empty values
-Expected Results: Consistent phone number formatting
+- CSV to Google Sheets conversion
+- Automatic sheet creation
+- Data type preservation
+- Column header recognition
+- Large dataset handling
+Expected Results: Accurate data conversion and upload
 ```
 
-##### Address Standardization Tests
+##### Function Node Tests (Data Cleaning)
 ```
-Test ID: UT-003
-Description: Validate address formatting and standardization
+Test ID: NT-003
+Description: Validate data cleaning function nodes
 Test Cases:
-- Complete addresses with all components
-- Incomplete addresses (missing city, state, zip)
-- Invalid zip codes and state abbreviations
-- Special characters and formatting issues
-Expected Results: USPS-compliant address formatting
+- Email validation regex functionality
+- Phone number standardization logic
+- Address formatting algorithms
+- Name parsing and standardization
+- Data completeness scoring
+Expected Results: Accurate data standardization and validation
 ```
 
-##### Name Standardization Tests
+##### Set/Filter Node Tests
 ```
-Test ID: UT-004
-Description: Validate name parsing and standardization
+Test ID: NT-004
+Description: Validate data filtering and criteria application
 Test Cases:
-- Complete names (first, middle, last)
-- Single names and incomplete data
-- Special characters and titles
-- Cultural name variations
-Expected Results: Consistent name formatting
+- Geographic filtering (state, city, zip)
+- Vehicle type filtering
+- Date range filtering
+- Quality score filtering
+- Business rule application
+Expected Results: Accurate data filtering based on criteria
 ```
 
-#### Validation Engine Unit Tests
-**Scope**: Validation rule engine and business logic
-
-##### Data Completeness Tests
+##### HubSpot Node Tests
 ```
-Test ID: UT-005
-Description: Validate data completeness checking
+Test ID: NT-005
+Description: Validate HubSpot CRM integration
 Test Cases:
-- Records with all required fields
-- Records missing critical fields
-- Partial data scenarios
-- Empty and null field handling
-Expected Results: Accurate completeness scoring
+- API connection and authentication
+- Contact creation and updates
+- Batch processing (100 contacts)
+- Field mapping accuracy
+- Duplicate handling logic
+- Rate limiting compliance
+Expected Results: Successful contact creation in HubSpot
 ```
 
-##### Deduplication Algorithm Tests
+##### Report Generation Node Tests
 ```
-Test ID: UT-006
-Description: Validate duplicate detection logic
+Test ID: NT-006
+Description: Validate report generation and notification
 Test Cases:
-- Exact duplicate records
-- Near-duplicate records (similar but not identical)
-- Records with different formatting but same data
-- Non-duplicate similar records
-Expected Results: Accurate duplicate identification
+- Processing summary statistics
+- Data quality metrics calculation
+- Error report generation
+- Email notification delivery
+- Audit trail logging
+Expected Results: Comprehensive reporting and notifications
 ```
 
 #### Database Operation Unit Tests
@@ -133,34 +137,35 @@ Test Cases:
 Expected Results: Accurate and performant queries
 ```
 
-### 2. Integration Testing
+### 2. Workflow Integration Testing
 
-#### API Integration Tests
-**Scope**: External system integrations and API connectivity
+#### End-to-End Workflow Tests
+**Scope**: Complete workflow execution from trigger to completion
 
-##### HubSpot CRM Integration Tests
+##### Full Workflow Execution Tests
 ```
-Test ID: IT-001
-Description: Validate HubSpot CRM integration functionality
+Test ID: WT-001
+Description: Validate complete workflow from start to finish
 Test Cases:
-- API connection establishment
-- Data mapping and transformation
-- Bulk data import operations
-- Error handling and retry logic
-- Rate limiting compliance
-Expected Results: Successful CRM data integration
+- File upload to Google Drive triggers workflow
+- Data flows through all processing steps
+- Final data appears correctly in HubSpot
+- Reports and notifications are generated
+- Error scenarios trigger appropriate handling
+Expected Results: Successful end-to-end data processing
 ```
 
-##### Email Marketing Platform Integration Tests
+##### Multi-File Processing Tests
 ```
-Test ID: IT-002
-Description: Validate email marketing platform integration
+Test ID: WT-002
+Description: Validate workflow handling multiple files
 Test Cases:
-- Platform-specific API connections
-- Segmentation data export
-- Format validation for marketing platforms
-- Contact list creation and updates
-Expected Results: Successful marketing data integration
+- Multiple CSV files uploaded simultaneously
+- Sequential processing of queued files
+- Concurrent workflow executions
+- Resource management during high load
+- Data integrity across multiple executions
+Expected Results: Reliable processing of multiple files
 ```
 
 #### Database Integration Tests
@@ -192,31 +197,31 @@ Expected Results: Reliable batch processing
 
 ### 3. Performance Testing
 
-#### Load Testing
-**Scope**: System performance under expected load conditions
+#### Workflow Performance Testing
+**Scope**: n8n workflow performance under various load conditions
 
-##### Processing Speed Tests
+##### Workflow Execution Speed Tests
 ```
 Test ID: PT-001
-Description: Validate processing speed requirements
+Description: Validate workflow processing speed requirements
 Test Scenarios:
 - 1,000 records processing time
 - 10,000 records processing time
 - 50,000 records processing time
-- Concurrent processing jobs
-Acceptance Criteria: < 2 minutes per 1,000 records
+- Large file processing (50MB)
+Acceptance Criteria: < 1 minute per 1,000 records
 ```
 
-##### Memory Usage Tests
+##### n8n Resource Usage Tests
 ```
 Test ID: PT-002
-Description: Validate memory utilization efficiency
+Description: Validate n8n resource utilization
 Test Scenarios:
-- Baseline memory usage
-- Peak memory during large processing jobs
-- Memory cleanup after processing
-- Memory leak detection
-Acceptance Criteria: < 6GB peak memory usage
+- CPU usage during workflow execution
+- Memory consumption for large datasets
+- Network bandwidth utilization
+- Database performance impact
+Acceptance Criteria: Efficient resource utilization within cloud limits
 ```
 
 #### Stress Testing
