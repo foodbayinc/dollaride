@@ -35,7 +35,7 @@ Based on internal surveys and strategic planning, this project addresses key bus
 
 Transform NYS Public motor vehicle records into clean, structured datasets for CRM and email marketing integration.
 
-**📋 [View Detailed Phase 1 Scope of Work](phase-1-data-cleansing-scope-of-work.md)**
+**📋 [View Detailed Phase 1 Scope of Work](data-cleansing/)**
 
 ---
 
