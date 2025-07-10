@@ -143,7 +143,7 @@ Week 13-21: Phase 5 - CSVP Strategic Planning Toolkit
 - **📊 [Survey Results Summary](Survey/)** - Original survey responses and requirements analysis
 
 ### Phase-Specific Documentation
-- **[Phase 1: Data Cleansing](phase-1-data-cleansing-scope-of-work.md)** - NYS data processing and CRM integration
+- **[Phase 1: Data Cleansing](data-cleansing/)** - NYS data processing and CRM integration
 - **[Phase 2: AI Centralization](phase-2-ai-centralization-scope-of-work.md)** - Strategic document management and AI preparation
 - **[Phase 3: SaaS GTM Strategy](phase-3-SaaS-gtm-strategy-scope-of-work.md)** - Go-to-market strategy development
 - **[Phase 4: Telematics Data Hosting](phase-4-telematics-data-hosting-scope-of-work.md)** - Vehicle data infrastructure
